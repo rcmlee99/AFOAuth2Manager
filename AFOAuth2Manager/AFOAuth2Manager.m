@@ -149,7 +149,7 @@ static NSError * AFErrorFromRFC6749Section5_2Error(id object) {
     NSParameterAssert(password);
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:kAFOAuthPasswordCredentialsGrantType forKey:@"grant_type"];
+    [parameters setValue:kAFOAuthClientCredentialsGrantType forKey:@"grant_type"];
     [parameters setValue:username forKey:@"username"];
     [parameters setValue:password forKey:@"password"];
 
@@ -222,7 +222,7 @@ static NSError * AFErrorFromRFC6749Section5_2Error(id object) {
     parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
 
     NSURLSessionTask *task;
-    task = [self POST:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    task = [self GET:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (!responseObject) {
             if (failure) {
                 failure(nil);
